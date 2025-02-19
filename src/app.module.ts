@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { PGTypeORMconfig } from './config/pgsql.config';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    // Establishes database connection using TypeORM with PostgreSQL config
+    TypeOrmModule.forRoot(PGTypeORMconfig)
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
