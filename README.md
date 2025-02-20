@@ -97,3 +97,59 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+# TypeORM Migrations Guide
+
+Manage database schema changes using TypeORM migrations. Below are the available commands:
+
+- **Run Pending Migrations:**
+
+  - Applies all pending migrations to update the database schema.
+  - **Command:** `npm run migration:run`
+
+- **Generate a New Migration:**
+
+  - Creates a migration file based on entity changes.
+  - **Command:** `npm run migration:generate --name=AddUserTable`
+  - **Example:** If you add a new `age` column in `UserEntity`, run:
+    ```sh
+    npm run migration:generate --name=AddAgeToUser
+    ```
+
+- **Create a Blank Migration:**
+
+  - Generates an empty migration file for manual schema changes.
+  - **Command:** `npm run migration:create --name=InitialSchema`
+  - **Example:** To create a manual migration file:
+    ```sh
+    npm run migration:create --name=CustomSchemaChanges
+    ```
+
+- **Revert the Last Migration:**
+
+  - Undo the last applied migration.
+  - **Command:** `npm run migration:revert`
+  - **Example:** If `AddAgeToUser` migration has an issue, revert it:
+    ```sh
+    npm run migration:revert
+    ```
+
+- **Show Pending Migrations:**
+  - Lists all migrations that haven't been executed yet.
+  - **Command:** `npm run migration:show`
+  - **Example:** Check pending migrations before running them:
+    ```sh
+    npm run migration:show
+    ```
+
+---
+
+### 🔹 **Usage Workflow**
+
+1. Modify entity files (e.g., add a new column in `UserEntity`).
+2. Generate a migration: `npm run migration:generate --name=AddAgeToUser`
+3. Apply the migration: `npm run migration:run`
+4. If needed, revert the last migration: `npm run migration:revert`
+5. Check for pending migrations: `npm run migration:show`
+
+This ensures a structured and versioned database schema. 🚀
